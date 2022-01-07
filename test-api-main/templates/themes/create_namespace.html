@@ -1,0 +1,55 @@
+{% include "header.html" %}
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Create Namespace</h1>
+    </div>
+
+    <div class="page-body">
+        <div class="tab-content" style="width:100%;">
+
+            <div id="namespace">
+                <h3>Create Namespace</h3>
+
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+
+                <form id="namespace-form" name="namespace" class="form-horizontal" role="form"
+                      style="width:100%;">
+                    {% csrf_token %}
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Namespace Name"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Username"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Password"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Password Again"/>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <input type="hidden" name="form_name" value="namespace">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Create a Namespace
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% include "footer.html" %}

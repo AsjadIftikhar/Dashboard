@@ -1,0 +1,197 @@
+{% include "header.html" %}
+<!-- Begin page content -->
+<div class="container">
+
+    <div name="notification_container">
+    </div>
+
+    <div class="page-header">
+        <h1>Create Namespace Or Tenant</h1>
+    </div>
+
+    <div class="page-body">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tenant">Create Tenant</a></li>
+            <li><a data-toggle="tab" href="#namespace">Create Namespace</a></li>
+        </ul>
+        <div class="tab-content" style="width:100%;">
+            <div id="tenant" class="tab-pane fade in active">
+                <h3>Create Tenant</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut
+                    labore et dolore magna aliqua.</p>
+
+                <form id="tenant-form" class="form-horizontal" role="form"
+                      style="width:100%;">
+                    {% csrf_token %}
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" name="tspace_name" class="form-control span8"
+                               placeholder="Tenant Name"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" name="tspace_uname"
+                               class="form-control span8"
+                               placeholder="Username"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" name="tspace_pass" class="form-control span8"
+                               placeholder="Password"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Password Again"/>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="tspace_hardQuota"
+                                       placeholder="HardQuota"/>
+
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">GB
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#">GB</a></li>
+                                        <li><a href="#">TB</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="tspace_softQuota"
+                                   placeholder="SoftQuota"/>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="tspace_namespaceQuota"
+                                   placeholder="NamespaceQuota"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <label>Authentication Types</label>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="authenticationType1" name="authenticationType1"
+                                       value="1"> Local
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="authenticationType2" name="authenticationType2"
+                                       value="1"> Active Directory
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="authenticationType3" name="authenticationType3"
+                                       value="1"> RADIUS
+                            </label>
+                        </div>
+                    </div>
+                    <br/>
+                    <label>Settings</label>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-4"><label class="checkbox-inline">
+                            <input type="checkbox" id="complianceConfigurationEnabled"
+                                   name="complianceConfigurationEnabled" value=1"> Compliance
+                            Configuration Enabled
+                        </label>
+                        </div>
+                        <div class="col-md-4"><label class="checkbox-inline">
+                            <input type="checkbox" id="versioningConfigurationEnabled"
+                                   name="versioningConfigurationEnabled" value="1"> Versioning
+                            Configuration Enabled
+                        </label>
+                        </div>
+                        <div class="col-md-4"><label class="checkbox-inline">
+                            <input type="checkbox" id="searchConfigurationEnabled"
+                                   name="searchConfigurationEnabled" value="1"> Search Configuration
+                            Enabled
+                        </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"><label class="checkbox-inline">
+                            <input type="checkbox" id="replicationConfigurationEnabled"
+                                   name="replicationConfigurationEnabled" value="1"> Replication
+                            Configuration Enabled
+                        </label>
+                        </div>
+                        <div class="col-md-4"><label class="checkbox-inline">
+                            <input type="checkbox" id="servicePlanSelectionEnabled"
+                                   name="servicePlanSelectionEnabled" value="1"> Service Plan
+                            Selection Enabled
+                        </label>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+
+
+                    <br/>
+                    <br/>
+                    <input type="hidden" name="form_name" value="tenant">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Create a Tenant
+                    </button>
+                </form>
+            </div>
+            <div id="namespace" class="tab-pane fade">
+                <h3>Create NameSpace</h3>
+
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</p>
+
+                <form id="namespace-form" name="namespace" class="form-horizontal" role="form"
+                      style="width:100%;">
+                    {% csrf_token %}
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Namespace Name"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Username"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Password"/>
+                    </div>
+                    <br/>
+
+                    <div class="input-group" style="width:100%;">
+                        <input type="text" style="width:100%;" class="form-control span8"
+                               placeholder="Password Again"/>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <input type="hidden" name="form_name" value="namespace">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Create a Namespace
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include "footer.html" %}

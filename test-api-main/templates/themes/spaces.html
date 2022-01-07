@@ -1,0 +1,48 @@
+{% include "header.html" %}
+<!-- Begin page content -->
+<div class="container">
+    <div class="table-responsive" style="overflow-x: visible;">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Name</th>
+                <th>Storage Type</th>
+                <th>Size</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for space in user_spaces %}
+            <tr>
+                <td><input type="checkbox" value=""></td>
+                <td><img src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/12.File-16.png"/></td>
+                <td>{{ space.space_url }}</td>
+                <td>{% if space.space_type == 1 %} Namespace {% else %} Tenant {% endif %}</td>
+                <td>8.2 MB</td>
+                <td>{{ space.created_date }}</td>
+                <td>
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Actions <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% if space.space_type == 1 %} /namespaces/{{space.id}}{% else %} /tenant/{{space.id}}{% endif %}">Open {% if space.space_type == 1 %} Namespace {% else %} Tenant {% endif %}</a></li>
+                            <li><a href="{% if space.space_type == 1 %} /namespaces/{{space.id}}{% else %} /tenant/{{space.id}}{% endif %}">Modify {% if space.space_type == 1 %} Namespace {% else %} Tenant {% endif %}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% if space.space_type == 1 %} /namespaces/{{space.id}}{% else %} /tenant/{{space.id}}{% endif %}">Delete {% if space.space_type == 1 %} Namespace {% else %} Tenant {% endif %}</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include "footer.html" %}
