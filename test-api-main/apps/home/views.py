@@ -9,10 +9,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 
+from hci.helper import Data
+
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {'segment': 'index'}
+    get_data = Data()
+    Instances = get_data.get_instance_count()
+    Jobs = get_data.get_jobs_count()
+    Tasks = get_data.get_task_count()
+    JobList = get_data.get_jobs()
+    InstancesList = get_data.get_instances()
+
+    context = {'segment': 'index',
+               'Instances': Instances,
+               'Jobs': Jobs,
+               'Tasks': Tasks,
+               'JobList': JobList,
+               'InstancesList': InstancesList}
 
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
