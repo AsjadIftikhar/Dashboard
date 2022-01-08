@@ -51,27 +51,15 @@ def get_spaces(request):
 # 	else:
 # 		return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-# @api_view(['POST'])
-# def create_tenants(request):
-# 	if request.method == 'POST':
-# 		serializer = TenantCreateSerializer(data=request.data)
-# 		if serializer.is_valid():
-# 			#TODO: Tenant user matching
-# 			headers = {'content-type': 'application/json','Authorization': 'HCP bXNheWdp:65f612d5e6bfba42b9961bf2767e7b5d'}
-# 			integerObject = integerTable.objects.get(id = 1)
-# 			getURL = integerObject.address+"/mapi/tenants?username="+integerObject.username+"&password="+integerObject.password+"&forcePasswordChange=false"
-# 			response = requests.put(
-# 				getURL,
-# 				json= serializer.data,
-# 				headers=headers,
-# 				verify=False)
-# 			if response.status_code != 200:
-# 				return Response(response.headers, status=response.status_code)
-# 			else:
-# 				return Response(response.headers, status=status.HTTP_200_OK)
-# 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-# 	else:
-# 		return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+# @api_view(['POST']) def create_tenants(request): if request.method == 'POST': serializer = TenantCreateSerializer(
+# data=request.data) if serializer.is_valid(): #TODO: Tenant user matching headers = {'content-type':
+#  'application/json','Authorization': 'HCP bXNheWdp:65f612d5e6bfba42b9961bf2767e7b5d'} integerObject =
+#  integerTable.objects.get(id = 1) getURL = integerObject.address+"/mapi/tenants?username="+integerObject.username
+#  +"&password="+integerObject.password+"&forcePasswordChange=false" response = requests.put( getURL,
+#  json= serializer.data, headers=headers, verify=False) if response.status_code != 200: return Response(
+#  response.headers, status=response.status_code) else: return Response(response.headers, status=status.HTTP_200_OK)
+#  return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) else: return Response(
+#  status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class GetRegions(viewsets.ModelViewSet):
 	queryset = Regions.objects.all()
