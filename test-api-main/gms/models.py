@@ -55,24 +55,17 @@ class NameSpaces(models.Model):
 
 
 class integerTable(models.Model):
-    EP_CHOICES = (
-        ("https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/",
-         "https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/"),
-    )
-    AK_CHOICES = (
-        ("AKIASP6I3H4VJMQDGZHG",
-         "AKIASP6I3H4VJMQDGZHG"),
-    )
-    ASK_CHOICES = (
-        ("uOwZp0GyHWFTrdZhnbb/6HZcrorwNnRKn6TDZfR3", "uOwZp0GyHWFTrdZhnbb/6HZcrorwNnRKn6TDZfR3"),
-    )
+    EP = "https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/"
+    AK = "AKIASP6I3H4VJMQDGZHG"
+    ASK = "uOwZp0GyHWFTrdZhnbb/6HZcrorwNnRKn6TDZfR3"
+
     address = models.CharField(max_length=500)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
-    END_POINT = models.CharField(max_length=100, choices=EP_CHOICES, blank=True, null=True)
-    Access_KEY = models.CharField(max_length=100, choices=AK_CHOICES, blank=True, null=True)
-    Acess_Secret_key = models.CharField(max_length=100, choices=ASK_CHOICES, blank=True, null=True)
+    END_POINT = models.CharField(max_length=100, default=EP, null=True)
+    Access_KEY = models.CharField(max_length=100, default=AK, null=True)
+    Acess_Secret_key = models.CharField(max_length=100, default=ASK, null=True)
 
     regions = models.ForeignKey("Regions", on_delete=models.CASCADE)
 

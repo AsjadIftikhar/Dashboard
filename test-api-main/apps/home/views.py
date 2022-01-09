@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+from dateutil .relativedelta import relativedelta
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+import datetime
 
 from django import template
 from django.contrib.auth.decorators import login_required
@@ -20,13 +22,20 @@ def index(request):
     Tasks = get_data.get_task_count()
     JobList = get_data.get_jobs()
     InstancesList = get_data.get_instances()
+    TaskList = get_data.get_tasks()
+
+    After_Week = datetime.date.today() + relativedelta(weeks=1)
+    Now = datetime.date.today()
 
     context = {'segment': 'index',
                'Instances': Instances,
                'Jobs': Jobs,
                'Tasks': Tasks,
                'JobList': JobList,
-               'InstancesList': InstancesList}
+               'InstancesList': InstancesList,
+               'TaskList': TaskList,
+               'After_Week': After_Week,
+               'Now': Now}
 
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))

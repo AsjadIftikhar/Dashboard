@@ -101,11 +101,14 @@
                                             <tbody>
                                             {% for instance in InstancesList %}
                                                 <tr class="unread">
-                                                    <td><img class="rounded-circle" style="width:40px;"
-                                                             src="/static/assets/images/user/avatar-1.jpg"
-                                                             alt="activity-user"></td>
                                                     <td>
                                                         <h6 class="mb-1">{{ instance.id }}</h6>
+                                                        {#                                                        <img class="rounded-circle" style="width:40px;"#}
+                                                        {#                                                             src="/static/assets/images/user/avatar-1.jpg"#}
+                                                        {#                                                             alt="activity-user">#}
+                                                    </td>
+                                                    <td>
+                                                        {#                                                        <h6 class="mb-1">{{ instance.id }}</h6>#}
                                                         <p class="m-0">{{ instance.state }}</p>
                                                     </td>
                                                     <td>
@@ -113,10 +116,10 @@
                                                                 class="fas fa-circle text-c-green f-10 m-r-15"></i>{{ instance.ipAddress }}
                                                         </h6>
                                                     </td>
-                                                    <td><a href="#!"
-                                                           class="label theme-bg2 text-white f-12">Reject</a><a
-                                                            href="#!"
-                                                            class="label theme-bg text-white f-12">{{ instance.jobs }}</a>
+                                                    <td>
+                                                        {#                                                        <a href="#!" class="label theme-bg2 text-white f-12">Reject</a>#}
+                                                        <a href="#!"
+                                                           class="label theme-bg text-white f-12">{{ instance.jobs }}</a>
                                                     </td>
                                                 </tr>
                                             {% endfor %}
@@ -190,7 +193,8 @@
                                     <i class="fab fa-angellist text-c-purple f-50"></i>
                                 </div>
                                 <div class="progress m-t-30" style="height: 7px;">
-                                    <div class="progress-bar progress-c-theme p-3" role="progressbar" style="width: 100%;"
+                                    <div class="progress-bar progress-c-theme p-3" role="progressbar"
+                                         style="width: 100%;"
                                          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -377,12 +381,14 @@
                                     <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                        aria-controls="home" aria-selected="false">Today</a>
                                 </li>
-                                {#                                <li class="nav-item">#}
-                                {#                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">This Week</a>#}
-                                {#                                </li>#}
-                                {#                                <li class="nav-item">#}
-                                {#                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">All</a>#}
-                                {#                                </li>#}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                                       role="tab" aria-controls="profile" aria-selected="true">This Week</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                       aria-controls="contact" aria-selected="false">All</a>
+                                </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="home" role="tabpanel"
@@ -399,23 +405,158 @@
                                         </thead>
                                         <tbody>
                                         {% for job in JobList %}
+                                            {% if job.dueDate == Now %}
+                                                <tr>
+                                                    <td>
+                                                        <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                             style="width:40px;"
+                                                                             src="/static/assets/images/user/avatar-1.jpg"
+                                                                             alt="activity-user">{{ job.name }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.id }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.type }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                    </td>
+                                                    <td class="text-right"><i
+                                                            class="fas fa-circle text-c-green f-10"></i>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel"
+                                     aria-labelledby="profile-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Jobs</th>
+                                            <th>UUID</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="text-right"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for job in JobList %}
+                                            {% if job.dueDate <= datatime.now %}
+                                                <tr>
+                                                    <td>
+                                                        <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                             style="width:40px;"
+                                                                             src="/static/assets/images/user/avatar-1.jpg"
+                                                                             alt="activity-user">{{ job.name }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.id }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.type }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                    </td>
+                                                    <td class="text-right"><i
+                                                            class="fas fa-circle text-c-green f-10"></i>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Jobs</th>
+                                            <th>UUID</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="text-right"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for job in JobList %}
+<tr>
+                                                    <td>
+                                                        <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                             style="width:40px;"
+                                                                             src="/static/assets/images/user/avatar-1.jpg"
+                                                                             alt="activity-user">{{ job.name }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.id }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ job.type }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                    </td>
+                                                    <td class="text-right"><i
+                                                            class="fas fa-circle text-c-green f-10"></i>
+                                                    </td>
+                                                </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-12 col-md-12 m-b-30">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item active show">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                       aria-controls="home" aria-selected="false">Today</a>
+                                </li>
+                                {#                                <li class="nav-item">#}
+                                {#                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">This Week</a>#}
+                                {#                                </li>#}
+                                {#                                <li class="nav-item">#}
+                                {#                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">All</a>#}
+                                {#                                </li>#}
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade active show" id="home" role="tabpanel"
+                                     aria-labelledby="home-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Tasks</th>
+                                            <th>UUID</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Progress</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for task in TaskList %}
                                             <tr>
                                                 <td>
                                                     <h6 class="m-0"><img class="rounded-circle m-r-10"
                                                                          style="width:40px;"
                                                                          src="/static/assets/images/user/avatar-1.jpg"
-                                                                         alt="activity-user">{{ job.name }}</h6>
+                                                                         alt="activity-user">{{ task.name }}</h6>
                                                 </td>
                                                 <td>
-                                                    <h6 class="m-0">{{ job.id }}</h6>
+                                                    <h6 class="m-0">{{ task.id }}</h6>
                                                 </td>
                                                 <td>
-                                                    <h6 class="m-0">{{ job.type }}</h6>
+                                                    <h6 class="m-0">{{ task.type }}</h6>
                                                 </td>
                                                 <td>
-                                                    <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                    <h6 class="m-0 text-c-green">{{ task.status }}</h6>
                                                 </td>
                                                 <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i>
+                                                    {{ task.progress }}
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -623,7 +764,6 @@
                                 {#                                </div>#}
                             </div>
                         </div>
-
                     </div>
                     <!-- [ Main Content ] end -->
                 </div>

@@ -25,3 +25,7 @@ class Data:
     def get_instances(self):
         r = requests.get(self.base_url + '/apiViewSet/Instances/')
         return r.json()['results']
+
+    def get_tasks(self):
+        r = requests.get(self.base_url + '/apiViewSet/tasks/')
+        return r.json()['results']

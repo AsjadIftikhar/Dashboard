@@ -31,6 +31,7 @@ class Jobs(models.Model):
     serviceUnits = models.IntegerField(default=0)
     executionInstanceId = models.CharField(max_length=100)
     instanceMetrics = models.CharField(max_length=100)
+    dueDate = models.DateField()
 
     def __str__(self):
         return self.name
