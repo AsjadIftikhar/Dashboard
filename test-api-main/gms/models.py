@@ -58,6 +58,7 @@ class integerTable(models.Model):
     EP = "https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/"
     AK = "AKIASP6I3H4VJMQDGZHG"
     ASK = "uOwZp0GyHWFTrdZhnbb/6HZcrorwNnRKn6TDZfR3"
+    AB = "elasticbeanstalk-us-east-2-171683036970"
 
     address = models.CharField(max_length=500)
     username = models.CharField(max_length=100)
@@ -66,6 +67,7 @@ class integerTable(models.Model):
     END_POINT = models.CharField(max_length=100, default=EP, null=True)
     Access_KEY = models.CharField(max_length=100, default=AK, null=True)
     Acess_Secret_key = models.CharField(max_length=100, default=ASK, null=True)
+    Attach_bucket = models.CharField(max_length=100, default=AB, null=True)
 
     regions = models.ForeignKey("Regions", on_delete=models.CASCADE)
 

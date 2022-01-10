@@ -130,14 +130,14 @@ class CreateNamespace(generics.CreateAPIView):
                     from gms.models import integerTable
                     integer_table = integerTable.objects.get(username=request.user)
                     hcpm = HCPManager(credentials_path=[
-                        integer_table.EP, integer_table.AK, integer_table.ASK
+                        integer_table.END_POINT, integer_table.Access_KEY, integer_table.Acess_Secret_key
                     ], autotest=False)
 
                     ls = hcpm.list_buckets()
                     print(f"\n\nBuckets: {ls}")
-                    hcpm.attach_bucket('elasticbeanstalk-us-east-2-171683036970')
+                    hcpm.attach_bucket(integer_table.Attach_bucket)
                     hcpm.upload_file(localfile, localfile)
-                    filespath = 'https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/' + localfile
+                    filespath = integer_table.END_POINT + localfile
                     update = NameSpaces.objects.get(uuid=instance.uuid)
                     print(update)
                     update.fileurl = filespath
