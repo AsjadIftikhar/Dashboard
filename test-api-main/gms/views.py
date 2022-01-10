@@ -127,8 +127,11 @@ class CreateNamespace(generics.CreateAPIView):
                     localfile = str(instance.files)
                     print('scfsd', type(localfile), localfile, os.getcwd())
 
-                    from gms.models import integerTable
-                    integer_table = integerTable.objects.get(username=request.user)
+                    from gms.models import integerTable, Tenants, Regions
+
+                    get_tenant = Tenants.objects.get(id=request.data['tenantz'])
+                    qs = get_tenant.regionz.all()
+                    integer_table = integerTable.objects.get(regions__regions_name__exact=qs[0])
                     hcpm = HCPManager(credentials_path=[
                         integer_table.END_POINT, integer_table.Access_KEY, integer_table.Acess_Secret_key
                     ], autotest=False)
