@@ -126,11 +126,13 @@ class CreateNamespace(generics.CreateAPIView):
                 if userPermission:
                     localfile = str(instance.files)
                     print('scfsd', type(localfile), localfile, os.getcwd())
+
+                    from gms.models import integerTable
+                    integer_table = integerTable.objects.get(username=request.user)
                     hcpm = HCPManager(credentials_path=[
-                        "https://elasticbeanstalk-us-east-2-171683036970.s3.us-east-2.amazonaws.com/",  # END POINT
-                        "AKIASP6I3H4VJMQDGZHG",  # Access KEY
-                        "uOwZp0GyHWFTrdZhnbb/6HZcrorwNnRKn6TDZfR3"  # Acess Scret key
+                        integer_table.EP, integer_table.AK, integer_table.ASK
                     ], autotest=False)
+
                     ls = hcpm.list_buckets()
                     print(f"\n\nBuckets: {ls}")
                     hcpm.attach_bucket('elasticbeanstalk-us-east-2-171683036970')
