@@ -404,29 +404,27 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for job in JobList %}
-                                            {% if job.dueDate == Now %}
-                                                <tr>
-                                                    <td>
-                                                        <h6 class="m-0"><img class="rounded-circle m-r-10"
-                                                                             style="width:40px;"
-                                                                             src="/static/assets/images/user/avatar-1.jpg"
-                                                                             alt="activity-user">{{ job.name }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ job.id }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ job.type }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0 text-c-green">{{ job.status }}</h6>
-                                                    </td>
-                                                    <td class="text-right"><i
-                                                            class="fas fa-circle text-c-green f-10"></i>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                        {% for job in JobListToday %}
+                                            <tr>
+                                                <td>
+                                                    <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                         style="width:40px;"
+                                                                         src="/static/assets/images/user/avatar-1.jpg"
+                                                                         alt="activity-user">{{ job.name }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ job.id }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ job.type }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                </td>
+                                                <td class="text-right"><i
+                                                        class="fas fa-circle text-c-green f-10"></i>
+                                                </td>
+                                            </tr>
                                         {% endfor %}
                                         </tbody>
                                     </table>
@@ -445,29 +443,27 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for job in JobList %}
-                                            {% if job.dueDate <= datatime.now %}
-                                                <tr>
-                                                    <td>
-                                                        <h6 class="m-0"><img class="rounded-circle m-r-10"
-                                                                             style="width:40px;"
-                                                                             src="/static/assets/images/user/avatar-1.jpg"
-                                                                             alt="activity-user">{{ job.name }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ job.id }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ job.type }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0 text-c-green">{{ job.status }}</h6>
-                                                    </td>
-                                                    <td class="text-right"><i
-                                                            class="fas fa-circle text-c-green f-10"></i>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
+                                        {% for job in JobListThisWeek %}
+                                            <tr>
+                                                <td>
+                                                    <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                         style="width:40px;"
+                                                                         src="/static/assets/images/user/avatar-1.jpg"
+                                                                         alt="activity-user">{{ job.name }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ job.id }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ job.type }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0 text-c-green">{{ job.status }}</h6>
+                                                </td>
+                                                <td class="text-right"><i
+                                                        class="fas fa-circle text-c-green f-10"></i>
+                                                </td>
+                                            </tr>
                                         {% endfor %}
                                     </table>
 
