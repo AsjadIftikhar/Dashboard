@@ -11,6 +11,7 @@ class Tasks(models.Model):
     currentStep = models.IntegerField(default=0)
     totalStep = models.IntegerField(default=0)
     totalErrorCount = models.IntegerField(default=0)
+    dueDate = models.DateField()
 
     def __str__(self):
         return self.displayName

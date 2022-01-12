@@ -25,6 +25,9 @@ def index(request):
     TaskList = get_data.get_tasks()
     JobListToday = []
     JobListThisWeek = []
+    TaskListToday = []
+    TaskListThisWeek = []
+
     for Job in JobList:
         if Job["dueDate"] == str(datetime.date.today()):
             JobListToday.append(Job)
@@ -32,6 +35,14 @@ def index(request):
     for Job in JobList:
         if Job["dueDate"] <= str(datetime.date.today() + datetime.timedelta(days=7)):
             JobListThisWeek.append(Job)
+
+    for Task in TaskList:
+        if Task["dueDate"] == str(datetime.date.today()):
+            TaskListToday.append(Task)
+
+    for Task in TaskList:
+        if Task["dueDate"] <= str(datetime.date.today() + datetime.timedelta(days=7)):
+            TaskListThisWeek.append(Task)
 
 
     context = {'segment': 'index',
@@ -42,7 +53,9 @@ def index(request):
                'JobListToday': JobListToday,
                'JobListThisWeek': JobListThisWeek,
                'InstancesList': InstancesList,
-               'TaskList': TaskList}
+               'TaskList': TaskList,
+               'TaskListToday': TaskListToday,
+               'TaskListThisWeek': TaskListThisWeek}
 
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))

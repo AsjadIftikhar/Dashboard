@@ -98,6 +98,14 @@
                                 <div class="card-block px-0 py-3">
                                     <div class="table-responsive">
                                         <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>State</th>
+                                            <th>IP Address</th>
+                                            <th>Job</th>
+                                        </tr>
+                                        </thead>
                                             <tbody>
                                             {% for instance in InstancesList %}
                                                 <tr class="unread">
@@ -510,19 +518,97 @@
                         <div class="col-xl-12 col-md-12 m-b-30">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item active show">
-                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                       aria-controls="home" aria-selected="false">Today</a>
+                                    <a class="nav-link" id="task-home-tab" data-toggle="tab" href="#task-home" role="tab"
+                                       aria-controls="task-home" aria-selected="false">Today</a>
                                 </li>
-                                {#                                <li class="nav-item">#}
-                                {#                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">This Week</a>#}
-                                {#                                </li>#}
-                                {#                                <li class="nav-item">#}
-                                {#                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">All</a>#}
-                                {#                                </li>#}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="task-profile-tab" data-toggle="tab" href="#task-profile" role="tab" aria-controls="task-profile" aria-selected="true">This Week</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="task-contact-tab" data-toggle="tab" href="#task-contact" role="tab" aria-controls="task-contact" aria-selected="false">All</a>
+                                </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade active show" id="home" role="tabpanel"
-                                     aria-labelledby="home-tab">
+                                <div class="tab-pane fade active show" id="task-home" role="tabpanel"
+                                     aria-labelledby="task-home-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Tasks</th>
+                                            <th>UUID</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Progress</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for task in TaskListToday %}
+                                            <tr>
+                                                <td>
+                                                    <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                         style="width:40px;"
+                                                                         src="/static/assets/images/user/avatar-1.jpg"
+                                                                         alt="activity-user">{{ task.name }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ task.id }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ task.type }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0 text-c-green">{{ task.status }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i>
+                                                    {{ task.progress }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            <div class="tab-pane fade" id="task-profile" role="tabpanel"
+                                     aria-labelledby="task-profile-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Tasks</th>
+                                            <th>UUID</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Progress</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for task in TaskListThisWeek %}
+                                            <tr>
+                                                <td>
+                                                    <h6 class="m-0"><img class="rounded-circle m-r-10"
+                                                                         style="width:40px;"
+                                                                         src="/static/assets/images/user/avatar-1.jpg"
+                                                                         alt="activity-user">{{ task.name }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ task.id }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ task.type }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0 text-c-green">{{ task.status }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i>
+                                                    {{ task.progress }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            <div class="tab-pane fade" id="task-contact" role="tabpanel"
+                                     aria-labelledby="task-contact-tab">
                                     <table class="table table-hover">
                                         <thead>
                                         <tr>
@@ -556,53 +642,6 @@
                                                 </td>
                                             </tr>
                                         {% endfor %}
-                                        {##}
-                                        {#                                            <tr>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="/static/assets/images/user/avatar-2.jpg" alt="activity-user">Albert Andersen</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">Jumps over the lazy</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">2:37 PM</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0 text-c-red">Missed</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td class="text-right"><i class="fas fa-circle text-c-red f-10"></i></td>#}
-                                        {#                                            </tr>#}
-                                        {##}
-                                        {#                                            <tr>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="/static/assets/images/user/avatar-3.jpg" alt="activity-user">Silje Larsen</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">Dog the quick brown</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">10:23 AM</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0 text-c-purple">Delayed</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td class="text-right"><i class="fas fa-circle text-c-purple f-10"></i></td>#}
-                                        {#                                            </tr>#}
-                                        {#                                            <tr>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0"><img class="rounded-circle  m-r-10" style="width:40px;" src="/static/assets/images/user/avatar-1.jpg" alt="activity-user">Ida Jorgensen</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">The quick brown fox</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0">4:28 PM</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td>#}
-                                        {#                                                    <h6 class="m-0 text-c-green">Done</h6>#}
-                                        {#                                                </td>#}
-                                        {#                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i></td>#}
-                                        {#                                            </tr>#}
                                         </tbody>
                                     </table>
 
@@ -770,4 +809,4 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{#{% block javascripts %}{% endblock javascripts %}#}
